@@ -203,7 +203,7 @@ const ImageUpload: React.FC = () => {
         </div>
       </div>
 
-      {image && (
+      {/* {image && (
         <div style={{ position: "relative", width: "30%", height: 200 }}>
           <Cropper
             image={URL.createObjectURL(image)}
@@ -218,7 +218,7 @@ const ImageUpload: React.FC = () => {
       )}
 
       <button onClick={handleCrop}>Apply Crop</button>
-      {previewImage && <img src={previewImage} alt="Cropped Preview" />}
+      {previewImage && <img src={previewImage} alt="Cropped Preview" />} */}
 
       <select value={format} onChange={(e) => setFormat(e.target.value)}>
         <option value="png">PNG</option>
