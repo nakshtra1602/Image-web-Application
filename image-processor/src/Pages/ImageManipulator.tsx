@@ -1,27 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
-import ReactCrop, { type Crop } from "react-image-crop";
+import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
+import { useImageContext } from "../context/ImageContext";
 
 const API = "http://localhost:8080/api";
 
-const ImageUpload: React.FC = () => {
-  const [image, setImage] = useState<File | null>(null); // Original image
-  const [processedImage, setProcessedImage] = useState<string | null>(null); // Store latest processed image
-  const [previewImage, setPreviewImage] = useState<string | null>(null); // Preview Image
-  const [format, setFormat] = useState<string>("png"); // Image format for downloading
-  const [brightness, setBrightness] = useState(100);
-  const [contrast, setContrast] = useState(100);
-  const [saturation, setSaturation] = useState(100);
-  const [rotation, setRotation] = useState(0);
-
-  const [crop, setCrop] = useState<Crop>({
-    unit: "%", // Can be 'px' or '%'
-    x: 0,
-    y: 0,
-    width: 100,
-    height: 100,
-  });
+const ImageManipulator = () => {
+  const {
+    image,
+    previewImage,
+    processedImage,
+    brightness,
+    contrast,
+    saturation,
+    rotation,
+    crop,
+    format,
+    setImage,
+    setPreviewImage,
+    setProcessedImage,
+    setBrightness,
+    setContrast,
+    setSaturation,
+    setRotation,
+    setCrop,
+    setFormat,
+  } = useImageContext();
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -226,13 +231,13 @@ const ImageUpload: React.FC = () => {
             <span>{rotation}°</span>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="col-md-4">
           <div className="mb-3">
             {previewImage && (
               <div className="text-center">
                 <img
                   src={previewImage}
-                  alt="product_photo"
+                  alt="preview"
                   height={"200px"}
                   className="img img-responsive"
                 />
@@ -245,7 +250,7 @@ const ImageUpload: React.FC = () => {
         {previewImage && (
           <div style={{ marginTop: "10px" }}>
             <ReactCrop crop={crop} onChange={(c) => setCrop(c)}>
-              <img src={previewImage} />
+              <img src={previewImage} alt="cropPreview" />
             </ReactCrop>
           </div>
         )}
@@ -264,4 +269,4 @@ const ImageUpload: React.FC = () => {
   );
 };
 
-export default ImageUpload;
+export default ImageManipulator;

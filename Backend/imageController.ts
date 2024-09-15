@@ -166,9 +166,6 @@ export const controlFormat = async (req, res) => {
     // Set appropriate content type for the selected format
     res.writeHead(200, { "Content-Type": `image/${format}` });
     res.end(outputBuffer, "binary");
-
-    // Clean up the temporary file after sending
-    //   deleteTempFile(tempImagePath);
   } catch (error) {
     console.error("Error processing image download:", error);
     res.status(500).json({ error: "Error processing image download" });
