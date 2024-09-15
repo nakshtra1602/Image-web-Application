@@ -9,7 +9,7 @@ const ImageUpload: React.FC = () => {
   const [image, setImage] = useState<File | null>(null); // Original image
   const [processedImage, setProcessedImage] = useState<string | null>(null); // Store latest processed image
   const [previewImage, setPreviewImage] = useState<string | null>(null); // Preview Image
-  const [format, setFormat] = useState<string>("jpeg"); // Image format for downloading
+  const [format, setFormat] = useState<string>("png"); // Image format for downloading
   const [brightness, setBrightness] = useState(100);
   const [contrast, setContrast] = useState(100);
   const [saturation, setSaturation] = useState(100);
